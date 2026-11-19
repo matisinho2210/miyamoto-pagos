@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datos de transferencia · Miyamoto</title>
+<style>
+  :root { --bg:#ffffff; --card:#fff; --ink:#151515; --mute:#6b6b6b; --line:#e4e2dc; --acc:#151515; --ok:#1f7a4d; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--ink); min-height:100vh; padding:28px 18px 40px; }
+  .wrap { max-width:440px; margin:0 auto; }
+  .logo { display:block; width:78%; max-width:320px; margin:4px auto 26px; }
+  .eyebrow { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+  h1 { font-size:26px; line-height:1.15; margin:6px 0 22px; font-weight:700; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .row { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:1px solid var(--line); }
+  .row:last-child { border-bottom:none; }
+  .txt { flex:1; min-width:0; }
+  .lbl { font-size:12px; color:var(--mute); margin-bottom:2px; }
+  .val { font-size:16px; font-weight:600; word-break:break-all; }
+  button { font:inherit; cursor:pointer; border:1px solid var(--line); background:#fafafa; color:var(--ink); border-radius:10px; padding:8px 12px; font-size:14px; font-weight:600; white-space:nowrap; transition:all .15s; }
+  button:active { transform:scale(.97); }
+  button.done { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .all { width:100%; margin-top:16px; padding:16px; border-radius:14px; background:var(--acc); color:#fff; border:none; font-size:16px; }
+  .all.done { background:var(--ok); }
+  .note { font-size:13px; color:var(--mute); text-align:center; margin-top:14px; line-height:1.4; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="data:image/png;base64,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" alt="Miyamoto">
+  <p class="eyebrow">Miyamoto</p>
+  <h1>Datos de transferencia</h1>
+  <button class="all" id="all" style="margin:0 0 16px">Copiar todos los datos</button>
+  <div class="card" id="list"></div>
+  <p class="note">Copia todo y pégalo en la app de tu banco. Si tu banco no lo reconoce, copia dato por dato.</p>
+</div>
+<script>
+const datos = [
+  ["Nombre", "Javier Alexis Navarro Jara", "Javier Alexis Navarro Jara"],
+  ["RUT", "20.599.078-K", "20599078K"],
+  ["Banco", "Mercado Pago", "Mercado Pago"],
+  ["Tipo de cuenta", "Cuenta Vista", "Cuenta Vista"],
+  ["Número de cuenta", "1057971811", "1057971811"],
+  ["Correo", "javier.navarrojara@gmail.com", "javier.navarrojara@gmail.com"]
+];
+const list = document.getElementById("list");
+
+function fallbackCopy(t){
+  const ta=document.createElement("textarea"); ta.value=t; ta.setAttribute("readonly","");
+  ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta);
+  ta.select(); ta.setSelectionRange(0,t.length);
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta); return ok;
+}
+async function copy(t){
+  try{ await navigator.clipboard.writeText(t); return true; }catch(e){ return fallbackCopy(t); }
+}
+function flash(btn, txtOk, txtBase){
+  btn.classList.add("done"); btn.textContent=txtOk;
+  setTimeout(()=>{ btn.classList.remove("done"); btn.textContent=txtBase; },1600);
+}
+
+datos.forEach(([lbl, show, raw])=>{
+  const r=document.createElement("div"); r.className="row";
+  r.innerHTML='<div class="txt"><div class="lbl"></div><div class="val"></div></div>';
+  r.querySelector(".lbl").textContent=lbl;
+  r.querySelector(".val").textContent=show;
+  const b=document.createElement("button"); b.textContent="Copiar";
+  b.addEventListener("click", async()=>{ if(await copy(raw)) flash(b,"Copiado","Copiar"); else b.textContent="Mantén presionado el dato"; });
+  r.appendChild(b); list.appendChild(r);
+});
+
+document.getElementById("all").addEventListener("click", async(e)=>{
+  const t=datos.map(([l,s,r])=>l+": "+(l==="RUT"?s:r)).join("\n");
+  const b=e.currentTarget;
+  if(await copy(t)) flash(b,"Datos copiados","Copiar todos los datos");
+});
+</script>
+</body>
+</html>
